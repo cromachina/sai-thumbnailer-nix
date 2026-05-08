@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/sai1">
+    <comment>PaintTool SAI Ver.1 Format</comment>
+    <glob pattern="*.sai"/>
+  </mime-type>
+  <mime-type type="application/sai2">
+    <comment>PaintTool SAI Ver.2 Format</comment>
+    <glob pattern="*.sai2"/>
+  </mime-type>
+</mime-info>

@@ -23,10 +23,20 @@
         nativeBuildInputs = [ pkgs.cmake ];
         installPhase = ''
           mkdir -p $out/bin
+          cp Thumbnail-Sai1 $out/bin/thumbnail-sai1
           cp Thumbnail-Sai2 $out/bin/thumbnail-sai2
         '';
       };
-      thumbnailer = pkgs.writeTextFile {
+      sai1-thumbnailer = pkgs.writeTextFile {
+        name = "sai1-thumbnailer";
+        destination = "/share/thumbnailers/sai1.thumbnailer";
+        text = ''
+          [Thumbnailer Entry]
+          Exec=${libsai}/bin/thumbnail-sai1 %i %o
+          MimeType=application/sai1;
+        '';
+      };
+      sai2-thumbnailer = pkgs.writeTextFile {
         name = "sai2-thumbnailer";
         destination = "/share/thumbnailers/sai2.thumbnailer";
         text = ''
@@ -35,8 +45,20 @@
           MimeType=application/sai2;
         '';
       };
+      mime-types = pkgs.stdenv.mkDerivation {
+        name = "sai-mime-types";
+        src = ./.;
+        phases = [ "unpackPhase" "installPhase" ];
+        installPhase = ''
+          mkdir -p $out/share/mime/packages
+          cp $src/sai.xml $out/share/mime/packages/
+        '';
+      };
     in {
-      packages.default = thumbnailer;
+      packages.default = pkgs.symlinkJoin {
+        name = "sai-thumbnailers";
+        paths = [ sai1-thumbnailer sai2-thumbnailer mime-types ];
+      };
     }
   );
 }
