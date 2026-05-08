@@ -15,7 +15,7 @@ Add this flake to your config, adding the package to your system packages
 Then restart your thumbnailer service and file manager daemon, for example on Xfce:
 
 ```sh
-systemctl --user restart tumbler
+systemctl --user restart tumblerd
 pkill --signal SIGHUP thunar
 thunar --daemon &
 ```
