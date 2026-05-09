@@ -16,10 +16,9 @@
         src = pkgs.fetchFromGitHub {
           owner = "Wunkolo";
           repo = "libsai";
-          rev = "f8eae5189ac20c0cf41922b8cca726ff3e05ef39";
-          hash = "sha256-LULwg/TPrw0sRcUl8YUqw7Glta9l2Q4Y+1jRnnUk9qw=";
+          rev = "ecd0762f6262a5ecf3dbee5d893b550fa17e8a76";
+          hash = "sha256-BAHHUJxDZJi4Sh+gg6XEynsOOzofZzS3WtFY67F/Zn8=";
         };
-        patches = [ ./Thumbnail-Sai2.cpp.patch ];
         nativeBuildInputs = [ pkgs.cmake ];
         installPhase = ''
           mkdir -p $out/bin
